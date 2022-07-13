@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E8E7E7"
+    tools:context=".Help_Activity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="match_parent"
+        android:id="@+id/img_back"
+        android:src="@drawable/backnew"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Phản Hồi"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="25dp"
+        android:gravity="center"
+        android:textColor="#0900FF"/>
+</LinearLayout>
+
+    <EditText
+        android:id="@+id/edt_phanhoi"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_margin="10dp"
+        android:textStyle="italic"
+        android:freezesText="true"
+        android:background="@drawable/custom_editext"/>
+
+    <Button
+        android:id="@+id/btn_phanhoi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Gửi"
+        android:background="@drawable/custom_button"
+        android:layout_margin="10dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Thông tin liên hệ"
+            android:gravity="center"
+            android:layout_margin="5dp"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/img_facebook"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/facebook1"/>
+
+            <ImageView
+                android:layout_weight="1"
+                android:id="@+id/img_instagram"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/instagram"/>
+
+            <ImageView
+                android:layout_weight="1"
+                android:id="@+id/img_twitter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/twitter2"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SDT: 0123456789"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Địa chỉ: Trường Cao Đẳng FPT-Polytechnic"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email: admin123456@gmail.com"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

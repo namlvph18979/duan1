@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/bg7"
+    tools:context=".MainActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/edt_timkiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/custom_editext2"
+                    android:drawableEnd="@drawable/find"
+                    android:hint="Tìm kiếm..."
+                    android:paddingStart="8dp"
+                    android:paddingRight="8dp"
+                    android:textColorHint="#FA4578" />
+
+            </LinearLayout>
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/slide_view"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:sliderAnimationDuration="1000"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="500"
+                app:sliderIndicatorGravity="bottom|center"
+                app:sliderIndicatorMargin="10dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="2dp"
+                app:sliderIndicatorRadius="1.5dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderScrollTimeInSec="4"
+                app:sliderStartAutoCycle="true" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="5dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_xep_hang"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/top" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Xếp Hạng"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_xep_hang1"
+                        android:layout_width="34dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/doanhthu" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Doanh thu"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/img_xep_hang2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/thongke" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Thống Kê"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:text="Thể Loại"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/tokyo" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Hành Động"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/kinhdi" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Kinh Dị"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/trinhtham" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Trinh Thám"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/kiemhiep" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Kiếm Hiệp"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ngontinh" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Ngôn Tình"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/codai" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Cổ Đại"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/xuyenkhong" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Xuyên Không"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
+                            app:cardElevation="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="3dp"
+                                android:orientation="vertical">
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="90dp"
+                                    android:layout_height="90dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/dammy" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:gravity="center"
+                                    android:text="Đam Mỹ"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp" />
+
+
+                            </LinearLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="20dp"
+                android:text="Danh Sách Truyện"
+                android:textColor="@color/black"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <GridView
+                android:id="@+id/grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:layout_marginBottom="15dp"
+                android:nestedScrollingEnabled="true"
+                android:numColumns="3" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:mbn_backgroundBottomColor="#3c415e"
+        app:mbn_circleColor="@color/white"
+        app:mbn_countBackgroundColor="#ff6f00"
+        app:mbn_countTextColor="@color/white"
+        app:mbn_defaultIconColor="@color/white"
+        app:mbn_selectedIconColor="#3c415e" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/flb_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="70dp"
+        app:menu_animationDelayPerItem="55"
+        app:menu_buttonSpacing="0dp"
+        app:menu_icon="@drawable/menu"
+        app:menu_labels_cornerRadius="3dp">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/flb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logout"
+            app:fab_label="Đăng xuất"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/flb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/help"
+            app:fab_label="Trợ giúp"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/flb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/update"
+            app:fab_label="Cập nhật"
+            app:fab_size="mini" />
+
+
+    </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg9"
+    android:orientation="vertical"
+    android:layout_margin="5dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_remove"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right|top"
+        android:src="@drawable/remove"/>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Tim truyen..."
+            android:paddingLeft="10dp"
+            android:drawableEnd="@drawable/find"
+            android:paddingRight="10dp"
+            android:background="@drawable/custom_editext"
+            android:id="@+id/edt_timtruyen_xoa"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/cusstom_add">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="2dp"
+            android:src="@drawable/ic_add"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lv_xoatruyen"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</LinearLayout>

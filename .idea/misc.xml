@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/cusstom_add.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_button.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_chitiet.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_delete.xml" value="0.2375" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_dialog.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_edit.xml" value="0.2375" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_edit_delete.xml" value="0.11510416666666666" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_editext.xml" value="0.26205128205128203" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_editext2.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_image.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_image2.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_infor.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_item.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_lisview.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_slider.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_textview.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_theloai.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/custom_vip.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/download.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/ic_back.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/password.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/radius_item.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/drawable/repass.xml" value="0.26614583333333336" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_add.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_dangky.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_doi_mat_khau.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_help.xml" value="0.2" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_information.xml" value="0.264" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_me.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_notify.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_truyen.xml" value="0.2" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/dialog_delete.xml" value="0.264" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/fragment_me_.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/fragment_notification_.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/item_chap_truyen.xml" value="0.25" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/item_listview.xml" value="0.264" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/item_truyentranh.xml" value="0.264" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/slider_item.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
