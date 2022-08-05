@@ -1,17 +1,21 @@
 package com.example.duan1_appdoctruyen.Model;
 
-public class TruyenTranh {
+import java.io.Serializable;
 
-    private String tenTruyen,tenChap;
-    private int anh;
+public class TruyenTranh implements Serializable {
+
+    private String tenTruyen,tenChap,theloai,luotview,luotthich;
+
 
     public TruyenTranh() {
     }
 
-    public TruyenTranh(String tenTruyen, String tenChap, int anh) {
+    public TruyenTranh(String tenTruyen, String tenChap, String theloai, String luotview, String luotthich) {
         this.tenTruyen = tenTruyen;
         this.tenChap = tenChap;
-        this.anh = anh;
+        this.theloai = theloai;
+        this.luotview = luotview;
+        this.luotthich = luotthich;
     }
 
     public String getTenTruyen() {
@@ -30,12 +34,27 @@ public class TruyenTranh {
         this.tenChap = tenChap;
     }
 
-    public int getAnh() {
-        return anh;
+    public String getTheloai() {
+        return theloai;
     }
 
-    public void setAnh(int anh) {
-        this.anh = anh;
+    public void setTheloai(String theloai) {
+        this.theloai = theloai;
     }
 
+    public String getLuotview() {
+        return luotview;
+    }
+
+    public void setLuotview(String luotview) {
+        this.luotview = luotview;
+    }
+
+    public String getLuotthich() {
+        return luotthich;
+    }
+
+    public void setLuotthich(String luotthich) {
+        this.luotthich = luotthich;
+    }
 }

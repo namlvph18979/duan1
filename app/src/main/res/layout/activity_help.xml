@@ -41,6 +41,7 @@
         android:layout_margin="10dp"
         android:textStyle="italic"
         android:freezesText="true"
+        android:inputType="textMultiLine"
         android:background="@drawable/custom_editext"/>
 
     <Button

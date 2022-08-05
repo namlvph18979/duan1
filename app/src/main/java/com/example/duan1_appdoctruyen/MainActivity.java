@@ -8,15 +8,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.duan1_appdoctruyen.Adapter.Slider_Adapter;
@@ -31,7 +40,12 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     ScrollView scrollView;
     GridView gridView;
+    LinearLayout hanh_dong,kinh_di,trinh_tham,kiem_hiep,ngon_tinh,co_dai,xuyen_khong,dam_my;
     EditText edt_timkiem;
 
 
@@ -57,6 +72,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        hanh_dong = findViewById(R.id.hanh_dong);
+        kinh_di = findViewById(R.id.kinh_di);
+        trinh_tham = findViewById(R.id.trinh_tham);
+        kiem_hiep = findViewById(R.id.kiem_hiep);
+        ngon_tinh = findViewById(R.id.ngon_tinh);
+        co_dai = findViewById(R.id.co_dai);
+        xuyen_khong = findViewById(R.id.xuyen_khong);
+        dam_my = findViewById(R.id.dam_my);
+
         scrollView = findViewById(R.id.scroll_view);
         edt_timkiem = findViewById(R.id.edt_timkiem);
         flbmenu = findViewById(R.id.flb_menu);
@@ -64,31 +88,64 @@ public class MainActivity extends AppCompatActivity {
         flb2 = findViewById(R.id.flb2);
         flb3 = findViewById(R.id.flb3);
 
-
+        TruyenTranh truyenTranh = new TruyenTranh();
 
 
         // fake data
 
         gridView = findViewById(R.id.grid_view);
         truyenTranhArrayList = new ArrayList<>();
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
-        truyenTranhArrayList.add(new TruyenTranh("Nghịch thiên tà thần","Chap 889",R.drawable.vidu));
 
+        RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
+
+        // link api
+        final String url = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens?populate=*";
+
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //nhan json array "data" tra ve
+                    JSONArray responseJSONArray = response.getJSONArray("data");
+                    //vong lap cho tung array o trong du lieu tra lai
+
+                    for (int i = 0;i < responseJSONArray.length();i++) {
+                        //get json object trong tung array
+                        JSONObject jsonObject = responseJSONArray.getJSONObject(i);
+                        //lay du lieu mang "attributes"
+                        JSONObject jsonArray = jsonObject.getJSONObject("attributes");
+                        JSONObject jsonObject1 = jsonArray.getJSONObject("the_loai");
+                        JSONArray jsonArray2 = jsonObject1.getJSONArray("data");
+                        for (int j = 0; j < jsonArray2.length(); j++) {
+                            JSONObject jsonObject3 = jsonArray2.getJSONObject(j);
+                            JSONObject jsonObject4 = jsonObject3.getJSONObject("attributes");
+
+                            truyenTranhArrayList.add(new TruyenTranh(jsonArray.getString("tieu_de_truyen"),jsonArray.getString("so_chuong")
+                                    ,jsonObject4.getString("ten_the_loai"),jsonArray.getString("luot_view"),jsonArray.getString("luot_thich")));
+
+                        }
+
+                    }
+
+                    adapter = new Truyentranh_Adapter(MainActivity.this,0,truyenTranhArrayList);
+                    gridView.setAdapter(adapter);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        queue.add(jsonObjectRequest);
 
         // gán dữ liệu cho gridview và xử lý slidershow
 
-        adapter = new Truyentranh_Adapter(this,0,truyenTranhArrayList);
-        gridView.setAdapter(adapter);
+
 
         sliderView = findViewById(R.id.slide_view);
         Slider_Adapter slider_adapter = new Slider_Adapter(image_slide);
@@ -98,16 +155,17 @@ public class MainActivity extends AppCompatActivity {
         sliderView.startAutoCycle();
 
 
-
         // Gán icon và xử lý click bottomnavigation
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_notify));
         bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_baseline_person_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_add));
+        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_chart));
         bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_logout));
 
+
+        //the loai onclick
 
 
 
@@ -195,7 +253,12 @@ public class MainActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getApplicationContext(),Truyen_Activity.class));
+                TruyenTranh truyenTranh = truyenTranhArrayList.get(position);
+                Bundle b = new Bundle();
+                b.putSerializable("truyen",truyenTranh);
+                Intent intent = new Intent(getApplicationContext(),Truyen_Activity.class);
+                intent.putExtra("data",b);
+                startActivity(intent);
             }
         });
 

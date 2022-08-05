@@ -21,11 +21,13 @@ public class Truyentranh_Adapter extends ArrayAdapter<TruyenTranh> {
 
     private Context context;
     private ArrayList<TruyenTranh> arrayList;
+    TruyenTranh truyenTranh;
 
-    public Truyentranh_Adapter(Context context, int resource, List<TruyenTranh> objects) {
-        super(context, resource, objects);
+    public Truyentranh_Adapter(@NonNull Context context, int resource, ArrayList<TruyenTranh> arrayList) {
+        super(context, resource, arrayList);
         this.context = context;
-        this.arrayList = new ArrayList<>(objects);
+        this.arrayList = arrayList;
+        this.truyenTranh = truyenTranh;
     }
 
     @NonNull
@@ -36,14 +38,15 @@ public class Truyentranh_Adapter extends ArrayAdapter<TruyenTranh> {
             convertView = inflater.inflate(R.layout.item_truyentranh,null);
         }
 
-//        if (arrayList.size()>0){
-            TruyenTranh truyenTranh =  this.arrayList.get(position);
+
+////        if (arrayList.size()>0){
+            truyenTranh =  this.arrayList.get(position);
             TextView tentruyen = convertView.findViewById(R.id.tv_tentruyen);
             TextView Chap = convertView.findViewById(R.id.tv_chap);
             ImageView anh = convertView.findViewById(R.id.img_truyentranh);
 
-            tentruyen.setText("Nghịch thiên tà thần");
-            Chap.setText("Chap 889");
+            tentruyen.setText(truyenTranh.getTenTruyen());
+            Chap.setText("Chap "+truyenTranh.getTenChap());
             anh.setImageResource(R.drawable.vidu);
 //        }
         return convertView;

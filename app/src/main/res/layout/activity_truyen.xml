@@ -49,6 +49,7 @@
 
 
         <TextView
+            android:id="@+id/tv_namecomic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
@@ -59,32 +60,20 @@
             android:layout_marginLeft="10dp"
             android:layout_marginBottom="20dp"/>
 
-        <TextView
-            android:id="@+id/the_loai1"
-            android:background="@drawable/custom_theloai"
-            android:padding="2dp"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:text="Hành Động"
-            android:gravity="center"
-            android:layout_gravity="bottom|right"
-            android:layout_marginBottom="25dp"
-            android:layout_marginRight="200dp"
-            android:textSize="9dp"/>
+
         <TextView
             android:id="@+id/the_loai2"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:background="@drawable/custom_theloai"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:text="Kinh Dị"
+            android:text=""
             android:padding="2dp"
             android:gravity="center"
             android:layout_gravity="bottom|right"
             android:layout_marginBottom="25dp"
-            android:layout_marginRight="140dp"
-            android:textSize="9dp"/>
+            android:layout_marginRight="100dp"
+            android:textSize="10dp"/>
 
     </FrameLayout>
 
@@ -108,6 +97,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/tv_tieude"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="italic"
@@ -128,6 +118,33 @@
         android:textSize="19dp"
         android:textStyle="bold"
         android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:background="@drawable/custom_chitiet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_view"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="view"/>
+        <TextView
+            android:id="@+id/tv_like"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="like"/>
+
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lv_listchaptruyen"

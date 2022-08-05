@@ -30,6 +30,8 @@ public class Slider_Adapter extends SliderViewAdapter<Slider_Adapter.Holder> {
 
     }
 
+
+
     @Override
     public int getCount() {
         return image_slide.length;
