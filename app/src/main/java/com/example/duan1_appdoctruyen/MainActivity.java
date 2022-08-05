@@ -33,6 +33,7 @@ import com.example.duan1_appdoctruyen.Adapter.Truyentranh_Adapter;
 import com.example.duan1_appdoctruyen.Adapter.listxoa_Adapter;
 import com.example.duan1_appdoctruyen.Animation.TranslateAnimation;
 import com.example.duan1_appdoctruyen.Model.TruyenTranh;
+import com.example.duan1_appdoctruyen.Model.nguoidung;
 import com.example.duan1_appdoctruyen.Model.truyenDialog;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
         TruyenTranh truyenTranh = new TruyenTranh();
 
 
+
+
         // fake data
 
         gridView = findViewById(R.id.grid_view);
@@ -143,10 +146,66 @@ public class MainActivity extends AppCompatActivity {
         });
         queue.add(jsonObjectRequest);
 
-        // gán dữ liệu cho gridview và xử lý slidershow
+
+// Tim theo the loai
+        hanh_dong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               theloai_find("Hành Động");
+            }
+        });
+
+        kinh_di.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theloai_find("Kinh dị");
+            }
+        });
+
+        trinh_tham.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theloai_find("Trinh thám");
+            }
+        });
+
+        kiem_hiep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theloai_find("Kiếm hiệp");
+            }
+        });
+
+        ngon_tinh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theloai_find("Ngôn tình");
+            }
+        });
+
+        co_dai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theloai_find("Cổ đại");
+            }
+        });
+
+        xuyen_khong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theloai_find("Xuyên không");
+            }
+        });
+
+        dam_my.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                theloai_find("Đam mỹ");
+            }
+        });
 
 
-
+// gán dữ liệu cho gridview và xử lý slidershow
         sliderView = findViewById(R.id.slide_view);
         Slider_Adapter slider_adapter = new Slider_Adapter(image_slide);
         sliderView.setSliderAdapter(slider_adapter);
@@ -250,16 +309,19 @@ public class MainActivity extends AppCompatActivity {
 
 //         Xử lý onclick trên item gridview
 
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TruyenTranh truyenTranh = truyenTranhArrayList.get(position);
-                Bundle b = new Bundle();
-                b.putSerializable("truyen",truyenTranh);
-                Intent intent = new Intent(getApplicationContext(),Truyen_Activity.class);
-                intent.putExtra("data",b);
-                startActivity(intent);
-            }
+
+                    TruyenTranh truyenTranh = truyenTranhArrayList.get(position);
+                    Bundle b = new Bundle();
+                    b.putSerializable("truyen",truyenTranh);
+                    Intent intent = new Intent(getApplicationContext(),Truyen_Activity.class);
+                    intent.putExtra("data",b);
+                    startActivity(intent);
+                }
+
         });
 
 
@@ -301,6 +363,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void theloai_find(String theloai){
+        ArrayList<TruyenTranh> list = new ArrayList<>();
+        for (int i = 0; i < truyenTranhArrayList.size(); i++) {
+            if (truyenTranhArrayList.get(i).getTheloai().equals(theloai)){
+
+                list.add(new TruyenTranh(truyenTranhArrayList.get(i).getTenTruyen(),
+                        truyenTranhArrayList.get(i).getTenChap(),truyenTranhArrayList.get(i).getTheloai(),
+                        truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich()));
+            }
+            adapter = new Truyentranh_Adapter(MainActivity.this,0,list);
+            gridView.setAdapter(adapter);
+            gridView.deferNotifyDataSetChanged();
+
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    TruyenTranh truyenTranh = list.get(position);
+                    Bundle b = new Bundle();
+                    b.putSerializable("truyen",truyenTranh);
+                    Intent intent = new Intent(getApplicationContext(),Truyen_Activity.class);
+                    intent.putExtra("data",b);
+                    startActivity(intent);
+                }
+
+            });
+
+        }
     }
 
 }

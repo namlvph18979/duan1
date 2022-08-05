@@ -11,13 +11,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.duan1_appdoctruyen.Model.nguoidung;
 
 public class LoginActivity extends AppCompatActivity {
 
     TextView dangky,khach,doimk;
     EditText edt_username,edt_password;
     Button btn_login,btn_cancel;
-
+    nguoidung nguoidung = new nguoidung();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +63,13 @@ public class LoginActivity extends AppCompatActivity {
         khach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                Bundle b = new Bundle();
+                b.putSerializable("thongtin",nguoidung);
+
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("nd",b);
                 Animatoo.animateZoom(LoginActivity.this);
+                startActivity(intent);
             }
         });
 
