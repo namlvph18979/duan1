@@ -35,7 +35,7 @@ public class Information_Activity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_notify));
         bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_baseline_person_24));
         bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_add));
+        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_chart));
         bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_logout));
 
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
@@ -53,7 +53,8 @@ public class Information_Activity extends AppCompatActivity {
                         Animatoo.animateSlideLeft(Information_Activity.this);
                         break;
                     case 4:
-                        Toast.makeText(getApplicationContext(),"ban chon case4",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),XepHang_Activity.class));
+                        Animatoo.animateSlideLeft(Information_Activity.this);
                         break;
                     case 5:
                         startActivity(new Intent(getApplicationContext(),LoginActivity.class));
@@ -79,7 +80,8 @@ public class Information_Activity extends AppCompatActivity {
                         Animatoo.animateSlideLeft(Information_Activity.this);
                         break;
                     case 4:
-                        Toast.makeText(getApplicationContext(),"ban chon case4",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),XepHang_Activity.class));
+                        Animatoo.animateSlideLeft(Information_Activity.this);
                         break;
                     case 5:
                         startActivity(new Intent(getApplicationContext(),LoginActivity.class));

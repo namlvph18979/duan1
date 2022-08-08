@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                             JSONObject jsonObject4 = jsonObject3.getJSONObject("attributes");
 
                             truyenTranhArrayList.add(new TruyenTranh(jsonArray.getString("tieu_de_truyen"),jsonArray.getString("so_chuong")
-                                    ,jsonObject4.getString("ten_the_loai"),jsonArray.getString("luot_view"),jsonArray.getString("luot_thich")));
+                                    ,jsonObject4.getString("ten_the_loai"),jsonArray.getString("luot_view"),jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id"))));
 
                         }
 
@@ -243,7 +243,8 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case 4:
-                        Toast.makeText(getApplicationContext(),"ban chon case4",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),XepHang_Activity.class));
+                        Animatoo.animateSlideLeft(MainActivity.this);
                         break;
                     case 5:
                         startActivity(new Intent(getApplicationContext(),LoginActivity.class));
@@ -270,7 +271,8 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case 4:
-                        Toast.makeText(getApplicationContext(),"ban chon case4",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(),XepHang_Activity.class));
+                        Animatoo.animateSlideLeft(MainActivity.this);
                         break;
                     case 5:
                         startActivity(new Intent(getApplicationContext(),LoginActivity.class));
@@ -363,6 +365,51 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        // Tim kiem truyen
+        edt_timkiem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<TruyenTranh> list = new ArrayList<>();
+                for (int i = 0; i < truyenTranhArrayList.size(); i++) {
+
+                    if (edt_timkiem.getText().toString().isEmpty()){
+                        adapter = new Truyentranh_Adapter(MainActivity.this,0,truyenTranhArrayList);
+                        gridView.setAdapter(adapter);
+                        gridView.deferNotifyDataSetChanged();
+                        return;
+                    }
+                    else if (truyenTranhArrayList.get(i).getTenTruyen().toLowerCase().contains(edt_timkiem.getText().toString().toLowerCase())){
+                        list.add(new TruyenTranh(truyenTranhArrayList.get(i).getTenTruyen(),
+                                truyenTranhArrayList.get(i).getTenChap(),truyenTranhArrayList.get(i).getTheloai(),
+                                truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich(),truyenTranhArrayList.get(i).getId()));
+                        return;
+                    }
+                    adapter = new Truyentranh_Adapter(MainActivity.this,0,list);
+                    gridView.setAdapter(adapter);
+                    gridView.deferNotifyDataSetChanged();
+
+                    gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            TruyenTranh truyenTranh = list.get(position);
+                            Bundle b = new Bundle();
+                            b.putSerializable("truyen",truyenTranh);
+                            Intent intent = new Intent(getApplicationContext(),Truyen_Activity.class);
+                            intent.putExtra("data",b);
+                            startActivity(intent);
+
+                        }
+
+                    });
+
+                }
+                return;
+            }
+        });
+
+
     }
 
     public void theloai_find(String theloai){
@@ -372,7 +419,7 @@ public class MainActivity extends AppCompatActivity {
 
                 list.add(new TruyenTranh(truyenTranhArrayList.get(i).getTenTruyen(),
                         truyenTranhArrayList.get(i).getTenChap(),truyenTranhArrayList.get(i).getTheloai(),
-                        truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich()));
+                        truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich(),truyenTranhArrayList.get(i).getId()));
             }
             adapter = new Truyentranh_Adapter(MainActivity.this,0,list);
             gridView.setAdapter(adapter);

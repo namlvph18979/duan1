@@ -15,20 +15,21 @@ import androidx.annotation.Nullable;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
-import com.example.duan1_appdoctruyen.Model.truyenDialog;
+import com.example.duan1_appdoctruyen.Model.TruyenTranh;
 import com.example.duan1_appdoctruyen.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class listxoa_Adapter extends ArrayAdapter<truyenDialog> {
+public class listxoa_Adapter extends ArrayAdapter<TruyenTranh> {
 
     private Context context;
-    private ArrayList<truyenDialog> arrayList;
+    private ArrayList<TruyenTranh> arrayList;
     ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
-    public listxoa_Adapter( Context context,ArrayList<truyenDialog> objects) {
+    public listxoa_Adapter(@NonNull Context context, @NonNull List<TruyenTranh> objects) {
         super(context, 0, objects);
         this.context = context;
         this.arrayList = new ArrayList<>(objects);
@@ -42,7 +43,7 @@ public class listxoa_Adapter extends ArrayAdapter<truyenDialog> {
             convertView = inflater.inflate(R.layout.item_listview, null);
         }
 
-        truyenDialog truyenDialog = this.arrayList.get(position);
+        TruyenTranh truyenTranh = this.arrayList.get(position);
 
         SwipeRevealLayout swipeRevealLayout = convertView.findViewById(R.id.swiper);
         ImageView img_delete = convertView.findViewById(R.id.img_delete);
@@ -52,16 +53,16 @@ public class listxoa_Adapter extends ArrayAdapter<truyenDialog> {
 
 
         CircleImageView imageView = convertView.findViewById(R.id.img_itemlistview_xoa);
-        imageView.setImageResource(truyenDialog.getImage());
+        imageView.setImageResource(R.drawable.vidu);
 
         TextView tv_tentruyen = convertView.findViewById(R.id.tv_lvxoa_tentruyen);
-        tv_tentruyen.setText("Ten: "+truyenDialog.getName());
+        tv_tentruyen.setText("Tên: "+truyenTranh.getTenTruyen());
 
         TextView tv_chap = convertView.findViewById(R.id.tv_lvxoa_chap);
-        tv_chap.setText("Chap: "+truyenDialog.getChap());
+        tv_chap.setText("Chap: "+truyenTranh.getTenChap());
 
 
-        viewBinderHelper.bind(swipeRevealLayout,truyenDialog.getName());
+        viewBinderHelper.bind(swipeRevealLayout,truyenTranh.getTenTruyen());
 
         img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +77,7 @@ public class listxoa_Adapter extends ArrayAdapter<truyenDialog> {
 
             }
         });
+
         return convertView;
     }
 

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DuAn1_appdoctruyen">
         <activity
+            android:name=".XepHang_Activity"
+            android:exported="false" />
+        <activity
             android:name=".NoiDung_Activity"
             android:exported="false" />
         <activity

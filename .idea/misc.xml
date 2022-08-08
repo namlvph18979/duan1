@@ -41,12 +41,14 @@
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_notify.xml" value="0.25" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_truyen.xml" value="0.2" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/activity_xep_hang.xml" value="0.2" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/dialog_delete.xml" value="0.264" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/fragment_me_.xml" value="0.25" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/fragment_notification_.xml" value="0.25" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/item_chap_truyen.xml" value="0.25" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/item_listview.xml" value="0.264" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/item_truyentranh.xml" value="0.264" />
+        <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/item_xephang.xml" value="0.234375" />
         <entry key="..\:/DuAn1_appdoctruyen/app/src/main/res/layout/slider_item.xml" value="0.25" />
       </map>
     </option>

@@ -28,7 +28,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Truyen_Activity extends AppCompatActivity {
 
@@ -63,6 +66,7 @@ public class Truyen_Activity extends AppCompatActivity {
 
         tvname.setText(truyenTranh.getTenTruyen());
         tvtheloai.setText(truyenTranh.getTheloai());
+
         tv_view.setText("View: "+truyenTranh.getLuotview());
         demview = Integer.parseInt(truyenTranh.getLuotview());
 
@@ -77,7 +81,6 @@ public class Truyen_Activity extends AppCompatActivity {
 
         // link api
         final String url = "https://mysterious-wave-70860.herokuapp.com/api/chap-truyens?populate=*";
-
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -113,6 +116,7 @@ public class Truyen_Activity extends AppCompatActivity {
 
 
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -137,11 +141,66 @@ public class Truyen_Activity extends AppCompatActivity {
         img_heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String url2 = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens/"+truyenTranh.getId();
+                Log.e("a",url2);
+
                 dem2++;
 
                     if (dem2%2!=0){
                         img_heart.setImageResource(R.drawable.heartnew2);
                         tv_like.setText("like: "+ ++dem);
+                        JSONObject itemA = new JSONObject();
+                        try {
+                            itemA.put("luot_view", demview);
+                            itemA.put("luot_thich",dem);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        final JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("data", itemA);
+
+                        } catch (JSONException e) {
+                            // handle exception
+                        }
+                        JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.PUT, url2, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+
+                                Log.d("Response", response.toString());
+                            }
+
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+
+
+                        }){    //this is the part, that adds the header to the request
+                            @Override
+                            public Map<String, String> getHeaders() {
+                                Map<String, String> params = new HashMap<String, String>();
+                                //params.put("x-vacationtoken", "secret_token");
+                                params.put("content-type", "application/json");
+                                return params;
+                            }
+                            @Override
+                            public byte[] getBody() {
+
+                                try {
+                                    Log.i("json", jsonObject.toString());
+                                    return jsonObject.toString().getBytes("UTF-8");
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
+                                return null;
+                            }
+                        };
+
+                        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                        requestQueue.add(jsonObjectRequest1);
                         Toast.makeText(getApplicationContext(),"Đã thích truyện",Toast.LENGTH_SHORT).show();
                         return;
                     }else {
@@ -153,7 +212,6 @@ public class Truyen_Activity extends AppCompatActivity {
 
             }
         });
-
 
     }
 

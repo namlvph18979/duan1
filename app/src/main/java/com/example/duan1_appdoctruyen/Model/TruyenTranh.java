@@ -4,18 +4,21 @@ import java.io.Serializable;
 
 public class TruyenTranh implements Serializable {
 
-    private String tenTruyen,tenChap,theloai,luotview,luotthich;
+    private String tenTruyen,tenChap,theloai,luotview,luotthich,id;
+
+
 
 
     public TruyenTranh() {
     }
 
-    public TruyenTranh(String tenTruyen, String tenChap, String theloai, String luotview, String luotthich) {
+    public TruyenTranh(String tenTruyen, String tenChap, String theloai, String luotview, String luotthich,String id) {
         this.tenTruyen = tenTruyen;
         this.tenChap = tenChap;
         this.theloai = theloai;
         this.luotview = luotview;
         this.luotthich = luotthich;
+        this.id = id;
     }
 
     public String getTenTruyen() {
@@ -56,5 +59,13 @@ public class TruyenTranh implements Serializable {
 
     public void setLuotthich(String luotthich) {
         this.luotthich = luotthich;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }
