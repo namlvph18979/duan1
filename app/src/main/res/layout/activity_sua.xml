@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".Sua_Activity">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/backnew"
+        android:paddingRight="350dp"
+        android:layout_marginTop="5dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Sửa Truyện"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        android:layout_marginTop="25dp"/>
+
+    <EditText
+        android:id="@+id/edt_tentruyen"
+        android:layout_width="match_parent"
+        android:background="@drawable/custom_editext2"
+        android:layout_height="45dp"
+        android:hint="tên truyện"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="70dp"/>
+
+    <EditText
+        android:id="@+id/edt_Chap"
+        android:layout_width="match_parent"
+        android:background="@drawable/custom_editext2"
+        android:layout_height="45dp"
+        android:hint="Chap truyện"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/edt_theloai"
+        android:layout_width="match_parent"
+        android:background="@drawable/custom_editext2"
+        android:layout_height="45dp"
+        android:hint="Thể loại"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:id="@+id/edt_linkanh"
+        android:layout_width="match_parent"
+        android:background="@drawable/custom_editext2"
+        android:layout_height="45dp"
+        android:hint="link ảnh"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_luu"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lưu"
+            android:layout_margin="25dp"
+            android:background="@drawable/custom_button"/>
+        <Button
+            android:id="@+id/btn_huy"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:text="Hủy"
+            android:background="@drawable/custom_button"/>
+    </LinearLayout>
+
+
+</LinearLayout>

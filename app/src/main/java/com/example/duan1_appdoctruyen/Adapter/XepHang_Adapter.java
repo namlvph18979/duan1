@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.duan1_appdoctruyen.Model.TruyenTranh;
 import com.example.duan1_appdoctruyen.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class XepHang_Adapter extends ArrayAdapter<TruyenTranh> {
     Context context;
     ArrayList<TruyenTranh> arrayList;
     TruyenTranh truyenTranh;
+
 
     public XepHang_Adapter(@NonNull Context context, int resource, ArrayList<TruyenTranh> arrayList) {
         super(context, resource, arrayList);
@@ -34,17 +36,20 @@ public class XepHang_Adapter extends ArrayAdapter<TruyenTranh> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         if (convertView==null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.item_truyentranh, null);
+            convertView = inflater.inflate(R.layout.item_xephang, null);
         }
         truyenTranh =  this.arrayList.get(position);
-        TextView tentruyen = convertView.findViewById(R.id.tv_tentruyen);
+        TextView ten = convertView.findViewById(R.id.tv_tentruyen);
         TextView Chap = convertView.findViewById(R.id.tv_chap);
-        ImageView anh = convertView.findViewById(R.id.img_truyentranh);
+        TextView view = convertView.findViewById(R.id.tv_view);
+        ImageView anh = convertView.findViewById(R.id.img_xephang);
 
-        tentruyen.setText(truyenTranh.getTenTruyen());
+
+        ten.setText("Ten: "+truyenTranh.getTenTruyen());
         Chap.setText("Chap "+truyenTranh.getTenChap());
-        anh.setImageResource(R.drawable.vidu);
-//        }
+        view.setText("View: "+truyenTranh.getLuotview());
+        Picasso.get().load(truyenTranh.getImg()).into(anh);
+
         return convertView;
     }
 }

@@ -25,11 +25,12 @@
         android:id="@+id/edt_username"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:hint="username"
+        android:hint="Gmail"
+
         android:layout_margin="10dp"
         android:gravity="center"
         android:textColorHint="#3B96F8"
-        android:padding="5dp"
+        android:padding="1dp"
         android:drawableStart="@drawable/ic_baseline_person_24"
         android:background="@drawable/custom_editext"/>
 
@@ -38,6 +39,7 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:hint="password"
+        android:maxLength="15"
         android:layout_margin="10dp"
         android:gravity="center"
         android:textColorHint="#3B96F8"

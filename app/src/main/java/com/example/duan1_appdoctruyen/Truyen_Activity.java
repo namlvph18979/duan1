@@ -3,6 +3,7 @@ package com.example.duan1_appdoctruyen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.duan1_appdoctruyen.Adapter.Truyentranh_Adapter;
 import com.example.duan1_appdoctruyen.Adapter.chap_Adapter;
 import com.example.duan1_appdoctruyen.Model.Chap;
 import com.example.duan1_appdoctruyen.Model.TruyenTranh;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,7 +37,7 @@ import java.util.Map;
 
 public class Truyen_Activity extends AppCompatActivity {
 
-    ImageView img_back,img_heart;
+    ImageView img_back,img_heart,img_nen;
     ListView listView;
     TextView tvname,tvtheloai,tv_like,tv_view;
     Chap chap = new Chap();
@@ -58,6 +60,7 @@ public class Truyen_Activity extends AppCompatActivity {
 
         img_back = findViewById(R.id.img_back);
         img_heart = findViewById(R.id.img_like);
+        img_nen = findViewById(R.id.img_anhnen);
         listView = findViewById(R.id.lv_listchaptruyen);
 
         // lay ten truyen
@@ -66,6 +69,8 @@ public class Truyen_Activity extends AppCompatActivity {
 
         tvname.setText(truyenTranh.getTenTruyen());
         tvtheloai.setText(truyenTranh.getTheloai());
+
+        Picasso.get().load(truyenTranh.getImg()).into(img_nen);
 
         tv_view.setText("View: "+truyenTranh.getLuotview());
         demview = Integer.parseInt(truyenTranh.getLuotview());
@@ -147,6 +152,7 @@ public class Truyen_Activity extends AppCompatActivity {
                 dem2++;
 
                     if (dem2%2!=0){
+
                         img_heart.setImageResource(R.drawable.heartnew2);
                         tv_like.setText("like: "+ ++dem);
                         JSONObject itemA = new JSONObject();
@@ -203,15 +209,28 @@ public class Truyen_Activity extends AppCompatActivity {
                         requestQueue.add(jsonObjectRequest1);
                         Toast.makeText(getApplicationContext(),"Đã thích truyện",Toast.LENGTH_SHORT).show();
                         return;
+
                     }else {
                         img_heart.setImageResource(R.drawable.heartnew1);
                         tv_like.setText("like: "+ --dem);
                         Toast.makeText(getApplicationContext(),"Đã bỏ thích truyện",Toast.LENGTH_SHORT).show();
                         return;
+
                 }
 
             }
         });
+
+    }
+    public void remember(int so){
+        SharedPreferences sharedPreferences = getSharedPreferences("IMG.txt",MODE_PRIVATE);
+        SharedPreferences.Editor editor= sharedPreferences.edit();
+        if (so%2!=0){
+            editor.putInt("img",R.drawable.heartnew2);
+        }else {
+            editor.clear();
+        }
+        editor.commit();
 
     }
 

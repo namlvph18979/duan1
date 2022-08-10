@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class TruyenTranh implements Serializable {
 
-    private String tenTruyen,tenChap,theloai,luotview,luotthich,id;
+    private String tenTruyen,tenChap,theloai,luotview,luotthich,id,img;
 
 
 
@@ -12,13 +12,14 @@ public class TruyenTranh implements Serializable {
     public TruyenTranh() {
     }
 
-    public TruyenTranh(String tenTruyen, String tenChap, String theloai, String luotview, String luotthich,String id) {
+    public TruyenTranh(String tenTruyen, String tenChap, String theloai, String luotview, String luotthich,String id,String img) {
         this.tenTruyen = tenTruyen;
         this.tenChap = tenChap;
         this.theloai = theloai;
         this.luotview = luotview;
         this.luotthich = luotthich;
         this.id = id;
+        this.img = img;
     }
 
     public String getTenTruyen() {
@@ -67,5 +68,13 @@ public class TruyenTranh implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

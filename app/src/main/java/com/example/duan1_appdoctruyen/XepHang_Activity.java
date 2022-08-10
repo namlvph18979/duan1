@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.example.duan1_appdoctruyen.Adapter.Truyentranh_Adapter;
+import com.example.duan1_appdoctruyen.Adapter.XepHang_Adapter;
 import com.example.duan1_appdoctruyen.Adapter.listxoa_Adapter;
 import com.example.duan1_appdoctruyen.Model.TruyenTranh;
 
@@ -31,7 +32,8 @@ public class XepHang_Activity extends AppCompatActivity {
     MeowBottomNavigation bottomNavigation;
     ListView listtop;
     ArrayList<TruyenTranh> truyenTranhArrayList;
-    listxoa_Adapter adapter;
+    XepHang_Adapter adapter;
+    TruyenTranh truyenTranh = new TruyenTranh();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,8 @@ public class XepHang_Activity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_chart));
         bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_logout));
 
-
+        Bundle b = getIntent().getBundleExtra("data");
+        truyenTranh = (TruyenTranh) b.getSerializable("truyen");
 
 
         RequestQueue queue = Volley.newRequestQueue(XepHang_Activity.this);
@@ -67,20 +70,15 @@ public class XepHang_Activity extends AppCompatActivity {
                         JSONObject jsonObject = responseJSONArray.getJSONObject(i);
                         //lay du lieu mang "attributes"
                         JSONObject jsonArray = jsonObject.getJSONObject("attributes");
-                        JSONObject jsonObject1 = jsonArray.getJSONObject("the_loai");
-                        JSONArray jsonArray2 = jsonObject1.getJSONArray("data");
-                        for (int j = 0; j < jsonArray2.length(); j++) {
-                            JSONObject jsonObject3 = jsonArray2.getJSONObject(j);
-                            JSONObject jsonObject4 = jsonObject3.getJSONObject("attributes");
+
 
                             truyenTranhArrayList.add(new TruyenTranh(jsonArray.getString("tieu_de_truyen"),jsonArray.getString("so_chuong")
-                                    ,jsonObject4.getString("ten_the_loai"),jsonArray.getString("luot_view"),jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id"))));
+                                    ,"tl1",jsonArray.getString("luot_view"),jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id")),truyenTranh.getImg()));
 
-                        }
 
                     }
 
-                    adapter = new listxoa_Adapter(XepHang_Activity.this,truyenTranhArrayList);
+                    adapter = new XepHang_Adapter(XepHang_Activity.this,0,truyenTranhArrayList);
                     listtop.setAdapter(adapter);
 
                 } catch (JSONException e) {
@@ -107,7 +105,7 @@ public class XepHang_Activity extends AppCompatActivity {
             public void onClickItem(MeowBottomNavigation.Model item) {
                 switch (item.getId()){
                     case 1:
-                        Toast.makeText(getApplicationContext(),"ban chon case1",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
                         startActivity(new Intent(getApplicationContext(),Information_Activity.class));
@@ -134,7 +132,7 @@ public class XepHang_Activity extends AppCompatActivity {
 
                 switch (item.getId()){
                     case 1:
-                        Toast.makeText(getApplicationContext(),"ban chon case1",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
                         startActivity(new Intent(getApplicationContext(),Information_Activity.class));

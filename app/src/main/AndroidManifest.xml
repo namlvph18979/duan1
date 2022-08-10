@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DuAn1_appdoctruyen">
         <activity
+            android:name=".Them_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Sua_Activity"
+            android:exported="false" />
+        <activity
             android:name=".XepHang_Activity"
             android:exported="false" />
         <activity

@@ -43,7 +43,7 @@ public class Information_Activity extends AppCompatActivity {
             public void onClickItem(MeowBottomNavigation.Model item) {
                 switch (item.getId()){
                     case 1:
-                        Toast.makeText(getApplicationContext(),"ban chon case1",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
 
@@ -70,7 +70,7 @@ public class Information_Activity extends AppCompatActivity {
 
                 switch (item.getId()){
                     case 1:
-                        Toast.makeText(getApplicationContext(),"ban chon case1",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
 

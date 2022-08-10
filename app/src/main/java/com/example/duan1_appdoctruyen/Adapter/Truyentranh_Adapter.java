@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.duan1_appdoctruyen.Model.TruyenTranh;
 import com.example.duan1_appdoctruyen.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class Truyentranh_Adapter extends ArrayAdapter<TruyenTranh> {
         }
 
 
-////        if (arrayList.size()>0){
+
             truyenTranh =  this.arrayList.get(position);
             TextView tentruyen = convertView.findViewById(R.id.tv_tentruyen);
             TextView Chap = convertView.findViewById(R.id.tv_chap);
@@ -47,8 +48,8 @@ public class Truyentranh_Adapter extends ArrayAdapter<TruyenTranh> {
 
             tentruyen.setText(truyenTranh.getTenTruyen());
             Chap.setText("Chap "+truyenTranh.getTenChap());
-            anh.setImageResource(R.drawable.vidu);
-//        }
+            Picasso.get().load(truyenTranh.getImg()).into(anh);
+
         return convertView;
     }
 }

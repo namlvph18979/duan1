@@ -2,15 +2,20 @@ package com.example.duan1_appdoctruyen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,11 +38,12 @@ public class Delete_Activity extends AppCompatActivity {
 
 
     ImageView img_remove;
+    LinearLayout them;
     EditText findDelete;
     ListView lis1;
     listxoa_Adapter adapter;
     ArrayList<TruyenTranh> list2 = new ArrayList<>();
-    TruyenTranh truyenTranh = new TruyenTranh();
+
 
 
     @Override
@@ -46,6 +52,7 @@ public class Delete_Activity extends AppCompatActivity {
         setContentView(R.layout.dialog_delete);
 
 
+        them = findViewById(R.id.them);
         img_remove = findViewById(R.id.img_remove);
         findDelete = findViewById(R.id.edt_timtruyen_xoa);
         lis1 = findViewById(R.id.lv_xoatruyen);
@@ -68,12 +75,17 @@ public class Delete_Activity extends AppCompatActivity {
                         JSONObject jsonArray = jsonObject.getJSONObject("attributes");
                         JSONObject jsonObject1 = jsonArray.getJSONObject("the_loai");
                         JSONArray jsonArray2 = jsonObject1.getJSONArray("data");
+                        JSONObject jsonObject2 = jsonArray.getJSONObject("img_truyen");
+                        JSONObject jsonObject6 = jsonObject2.getJSONObject("data");
+                        JSONObject jsonObject7 = jsonObject6.getJSONObject("attributes");
+                        JSONObject jsonObject8 = jsonObject7.getJSONObject("formats");
+                        JSONObject jsonObject9 = jsonObject8.getJSONObject("thumbnail");
                         for (int j = 0; j < jsonArray2.length(); j++) {
                             JSONObject jsonObject3 = jsonArray2.getJSONObject(j);
                             JSONObject jsonObject4 = jsonObject3.getJSONObject("attributes");
 
                             list2.add(new TruyenTranh(jsonArray.getString("tieu_de_truyen"), jsonArray.getString("so_chuong")
-                                    , jsonObject4.getString("ten_the_loai"), jsonArray.getString("luot_view"), jsonArray.getString("luot_thich"),String.valueOf(jsonArray.getInt("id"))));
+                                    , jsonObject4.getString("ten_the_loai"), jsonArray.getString("luot_view"), jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id")),jsonObject9.getString("url")));
 
                         }
 
@@ -89,16 +101,108 @@ public class Delete_Activity extends AppCompatActivity {
         public void onErrorResponse(VolleyError error) {
 
         }
+
+
     });
         queue.add(jsonObjectRequest);
 
+        lis1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TruyenTranh truyenTranh = list2.get(position);
+                Bundle b = new Bundle();
+                b.putSerializable("truyen",truyenTranh);
+                Intent intent = new Intent(getApplicationContext(),Sua_Activity.class);
+                intent.putExtra("data",b);
+                startActivity(intent);
+            }
+        });
+
+        lis1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                AlertDialog.Builder builder =new AlertDialog.Builder(getApplicationContext());
+                builder.setTitle("DELETE");
+                builder.setMessage("Bạn muốn xóa không?");
+                builder.setCancelable(true);
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TruyenTranh truyenTranh = list2.get(position);
+                        RequestQueue queue = Volley.newRequestQueue(Delete_Activity.this);
+                        final String url = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens/"+list2.get(position).getId();
+
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+
+                                    adapter = new listxoa_Adapter(getApplicationContext(),list2);
+                                    lis1.setAdapter(adapter);
+                                    lis1.deferNotifyDataSetChanged();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
+                            }}, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                Toast.makeText(getApplicationContext(),"Xoa that bai",Toast.LENGTH_SHORT).show();
+                            }
+
+                        });
+                        queue.add(jsonObjectRequest);
+                        dialog.cancel();
+
+                    }
+                });
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                builder.show();
+
+                return false;
+            }
+        });
+                them.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getApplicationContext(),Them_Activity.class));
+                    }
+                });
 
                 findDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String find = findDelete.getText().toString();
+                        ArrayList<TruyenTranh> arrayList = new ArrayList<>();
+                        for (int i = 0; i < list2.size(); i++) {
+                            if (list2.get(i).getTenTruyen().toLowerCase().contains(find.toLowerCase())){
+                                arrayList.add(new TruyenTranh(list2.get(i).getTenTruyen(),list2.get(i).getTenChap(),
+                                        list2.get(i).getTheloai(),list2.get(i).getLuotview(),list2.get(i).getLuotthich(),list2.get(i).getId(),
+                                        list2.get(i).getImg()));
+                                adapter = new listxoa_Adapter(getApplicationContext(),arrayList);
+                                lis1.setAdapter(adapter);
+                                lis1.deferNotifyDataSetChanged();
+                            }else if (find.isEmpty()){
+                                adapter = new listxoa_Adapter(getApplicationContext(),list2);
+                                lis1.setAdapter(adapter);
+
+                            }
+
+                        }
 
                     }
                 });
+
 
                 img_remove.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -108,7 +212,5 @@ public class Delete_Activity extends AppCompatActivity {
                 });
 
             }
-
-
 
 }

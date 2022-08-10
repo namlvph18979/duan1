@@ -92,8 +92,6 @@ public class MainActivity extends AppCompatActivity {
         TruyenTranh truyenTranh = new TruyenTranh();
 
 
-
-
         // fake data
 
         gridView = findViewById(R.id.grid_view);
@@ -120,12 +118,18 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject jsonArray = jsonObject.getJSONObject("attributes");
                         JSONObject jsonObject1 = jsonArray.getJSONObject("the_loai");
                         JSONArray jsonArray2 = jsonObject1.getJSONArray("data");
+                        JSONObject jsonObject2 = jsonArray.getJSONObject("img_truyen");
+                        JSONObject jsonObject6 = jsonObject2.getJSONObject("data");
+                        JSONObject jsonObject7 = jsonObject6.getJSONObject("attributes");
+                        JSONObject jsonObject8 = jsonObject7.getJSONObject("formats");
+                        JSONObject jsonObject9 = jsonObject8.getJSONObject("thumbnail");
+
                         for (int j = 0; j < jsonArray2.length(); j++) {
                             JSONObject jsonObject3 = jsonArray2.getJSONObject(j);
                             JSONObject jsonObject4 = jsonObject3.getJSONObject("attributes");
 
                             truyenTranhArrayList.add(new TruyenTranh(jsonArray.getString("tieu_de_truyen"),jsonArray.getString("so_chuong")
-                                    ,jsonObject4.getString("ten_the_loai"),jsonArray.getString("luot_view"),jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id"))));
+                                    ,jsonObject4.getString("ten_the_loai"),jsonArray.getString("luot_view"),jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id")),jsonObject9.getString("url")));
 
                         }
 
@@ -227,13 +231,12 @@ public class MainActivity extends AppCompatActivity {
         //the loai onclick
 
 
-
         bottomNavigation.setOnClickMenuListener(new MeowBottomNavigation.ClickListener() {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 switch (item.getId()){
                     case 1:
-                        Toast.makeText(getApplicationContext(),"ban chon case1",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện!",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
                         startActivity(new Intent(getApplicationContext(),Information_Activity.class));
@@ -243,7 +246,15 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case 4:
-                        startActivity(new Intent(getApplicationContext(),XepHang_Activity.class));
+                        for (int i = 0; i < truyenTranhArrayList.size(); i++) {
+                            TruyenTranh truyenTranh = truyenTranhArrayList.get(i);
+                            Bundle b = new Bundle();
+                            b.putSerializable("truyen",truyenTranh);
+                            Intent intent = new Intent(getApplicationContext(),XepHang_Activity.class);
+                            intent.putExtra("data",b);
+                            startActivity(intent);
+                        }
+
                         Animatoo.animateSlideLeft(MainActivity.this);
                         break;
                     case 5:
@@ -261,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getId()){
                     case 1:
-                        Toast.makeText(getApplicationContext(),"ban chon case1",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện!",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
                         startActivity(new Intent(getApplicationContext(),Information_Activity.class));
@@ -271,7 +282,14 @@ public class MainActivity extends AppCompatActivity {
 
                         break;
                     case 4:
-                        startActivity(new Intent(getApplicationContext(),XepHang_Activity.class));
+                        for (int i = 0; i < truyenTranhArrayList.size(); i++) {
+                            TruyenTranh truyenTranh = truyenTranhArrayList.get(i);
+                            Bundle b = new Bundle();
+                            b.putSerializable("truyen",truyenTranh);
+                            Intent intent = new Intent(getApplicationContext(),XepHang_Activity.class);
+                            intent.putExtra("data",b);
+                            startActivity(intent);
+                        }
                         Animatoo.animateSlideLeft(MainActivity.this);
                         break;
                     case 5:
@@ -382,7 +400,7 @@ public class MainActivity extends AppCompatActivity {
                     else if (truyenTranhArrayList.get(i).getTenTruyen().toLowerCase().contains(edt_timkiem.getText().toString().toLowerCase())){
                         list.add(new TruyenTranh(truyenTranhArrayList.get(i).getTenTruyen(),
                                 truyenTranhArrayList.get(i).getTenChap(),truyenTranhArrayList.get(i).getTheloai(),
-                                truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich(),truyenTranhArrayList.get(i).getId()));
+                                truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich(),truyenTranhArrayList.get(i).getId(),truyenTranhArrayList.get(i).getImg()));
                         return;
                     }
                     adapter = new Truyentranh_Adapter(MainActivity.this,0,list);
@@ -419,7 +437,7 @@ public class MainActivity extends AppCompatActivity {
 
                 list.add(new TruyenTranh(truyenTranhArrayList.get(i).getTenTruyen(),
                         truyenTranhArrayList.get(i).getTenChap(),truyenTranhArrayList.get(i).getTheloai(),
-                        truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich(),truyenTranhArrayList.get(i).getId()));
+                        truyenTranhArrayList.get(i).getLuotview(),truyenTranhArrayList.get(i).getLuotthich(),truyenTranhArrayList.get(i).getId(),truyenTranhArrayList.get(i).getImg()));
             }
             adapter = new Truyentranh_Adapter(MainActivity.this,0,list);
             gridView.setAdapter(adapter);
