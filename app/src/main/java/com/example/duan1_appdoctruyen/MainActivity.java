@@ -239,8 +239,10 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện!",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
-                        startActivity(new Intent(getApplicationContext(),Information_Activity.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Information_Activity.class);
+                        startActivity(intent1);
                         Animatoo.animateSlideRight(MainActivity.this);
+
                         break;
                     case 3:
 
@@ -275,6 +277,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Chức năng hiện chưa hoàn thiện!",Toast.LENGTH_SHORT).show();
                         break;
                     case 2:
+
                         startActivity(new Intent(getApplicationContext(),Information_Activity.class));
                         Animatoo.animateSlideRight(MainActivity.this);
                         break;
@@ -394,7 +397,7 @@ public class MainActivity extends AppCompatActivity {
                     if (edt_timkiem.getText().toString().isEmpty()){
                         adapter = new Truyentranh_Adapter(MainActivity.this,0,truyenTranhArrayList);
                         gridView.setAdapter(adapter);
-                        gridView.deferNotifyDataSetChanged();
+                        adapter.notifyDataSetChanged();
                         return;
                     }
                     else if (truyenTranhArrayList.get(i).getTenTruyen().toLowerCase().contains(edt_timkiem.getText().toString().toLowerCase())){
@@ -405,7 +408,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     adapter = new Truyentranh_Adapter(MainActivity.this,0,list);
                     gridView.setAdapter(adapter);
-                    gridView.deferNotifyDataSetChanged();
+                    adapter.notifyDataSetChanged();
 
                     gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

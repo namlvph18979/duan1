@@ -51,18 +51,17 @@ public class Them_Activity extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        String url2 = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens";
 
         btn_them.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String url2 = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens";
 
                 JSONObject itemA = new JSONObject();
                 Validate();
                 try {
                     itemA.put("tieu_de_truyen", tentruyen.getText());
                     itemA.put("so_chuong",chaptruyen.getText());
-                    itemA.put("url",linkanh.getText());
                     itemA.put("ten_the_loai",theloai.getText());
                     itemA.put("luot_view","0");
                     itemA.put("luot_thich","0");
@@ -97,7 +96,7 @@ public class Them_Activity extends AppCompatActivity {
                     @Override
                     public Map<String, String> getHeaders() {
                         Map<String, String> params = new HashMap<String, String>();
-                        //params.put("x-vacationtoken", "secret_token");
+                        params.put("x-vacationtoken", "secret_token");
                         params.put("content-type", "application/json");
                         return params;
                     }

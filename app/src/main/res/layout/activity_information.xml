@@ -31,6 +31,7 @@
                 android:src="@drawable/avata" />
 
             <TextView
+                android:id="@+id/tv_xinchao"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
@@ -39,16 +40,6 @@
                 android:textColor="@color/black"
                 android:textSize="18dp" />
 
-            <Button
-                android:id="@+id/btn_dangnnnhap"
-                android:layout_width="70dp"
-                android:layout_height="27dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/custom_button"
-                android:text="dang nhap"
-                android:textColor="@color/white"
-                android:textSize="10dp" />
 
         </LinearLayout>
 
@@ -181,7 +172,45 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_margin="15dp"
-            android:background="@drawable/custom_infor" />
+            android:orientation="vertical"
+            android:background="@drawable/custom_infor" >
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="email: "
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="username: "
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="password: "
+                android:inputType="textPassword"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold" />
+
+
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

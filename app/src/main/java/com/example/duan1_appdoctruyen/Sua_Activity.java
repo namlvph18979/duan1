@@ -54,9 +54,9 @@ public class Sua_Activity extends AppCompatActivity {
         theloai.setText(truyenTranh.getTheloai());
         anh.setText(truyenTranh.getImg());
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(Sua_Activity.this);
 
-        String url2 = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens/"+truyenTranh.getId()+"?populate=*";
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,15 +76,14 @@ public class Sua_Activity extends AppCompatActivity {
                 try {
                     jsonObject.put("data", itemA);
 
-                    Toast.makeText(getApplicationContext(),"Luu thanh cong",Toast.LENGTH_SHORT).show();
-
                 } catch (JSONException e) {
                     // handle exception
                 }
+                String url2 = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens/"+truyenTranh.getId();
                 JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.PUT, url2, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        Toast.makeText(getApplicationContext(),"Luu thanh cong",Toast.LENGTH_SHORT).show();
                         Log.d("Response", response.toString());
                     }
 
@@ -99,7 +98,7 @@ public class Sua_Activity extends AppCompatActivity {
                     @Override
                     public Map<String, String> getHeaders() {
                         Map<String, String> params = new HashMap<String, String>();
-                        //params.put("x-vacationtoken", "secret_token");
+//                        params.put("x-vacationtoken", "secret_token");
                         params.put("content-type", "application/json");
                         return params;
                     }
@@ -116,9 +115,7 @@ public class Sua_Activity extends AppCompatActivity {
                     }
                 };
 
-                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                requestQueue.add(jsonObjectRequest1);
-
+                queue.add(jsonObjectRequest1);
 
             }
         });

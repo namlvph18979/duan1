@@ -106,6 +106,70 @@ public class Delete_Activity extends AppCompatActivity {
     });
         queue.add(jsonObjectRequest);
 
+
+
+        lis1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                RequestQueue queue = Volley.newRequestQueue(Delete_Activity.this);
+                final String url = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens/"+list2.get(position).getId();
+                AlertDialog.Builder builder =new AlertDialog.Builder(Delete_Activity.this);
+                builder.setTitle("DELETE");
+                builder.setIcon(R.drawable.ic_delete);
+                builder.setMessage("Bạn muốn xóa không?");
+                builder.setCancelable(true);
+
+                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TruyenTranh truyenTranh = list2.get(position);
+
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+
+                                    Toast.makeText(Delete_Activity.this,"Xoa thanh cong",Toast.LENGTH_SHORT).show();
+
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
+                            }}, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+
+                            }
+
+
+                        });
+
+
+
+                        lis1.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        queue.add(jsonObjectRequest);
+                        dialog.cancel();
+
+                    }
+                });
+
+
+                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+//                AlertDialog alertDialog = builder.create();
+                builder.show();
+
+                return true;
+            }
+        });
+
         lis1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -118,60 +182,6 @@ public class Delete_Activity extends AppCompatActivity {
             }
         });
 
-        lis1.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-                AlertDialog.Builder builder =new AlertDialog.Builder(getApplicationContext());
-                builder.setTitle("DELETE");
-                builder.setMessage("Bạn muốn xóa không?");
-                builder.setCancelable(true);
-
-                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        TruyenTranh truyenTranh = list2.get(position);
-                        RequestQueue queue = Volley.newRequestQueue(Delete_Activity.this);
-                        final String url = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens/"+list2.get(position).getId();
-
-                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.DELETE, url, null, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-
-                                    adapter = new listxoa_Adapter(getApplicationContext(),list2);
-                                    lis1.setAdapter(adapter);
-                                    lis1.deferNotifyDataSetChanged();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-                                Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
-                            }}, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(getApplicationContext(),"Xoa that bai",Toast.LENGTH_SHORT).show();
-                            }
-
-                        });
-                        queue.add(jsonObjectRequest);
-                        dialog.cancel();
-
-                    }
-                });
-
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                builder.show();
-
-                return false;
-            }
-        });
                 them.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -191,7 +201,7 @@ public class Delete_Activity extends AppCompatActivity {
                                         list2.get(i).getImg()));
                                 adapter = new listxoa_Adapter(getApplicationContext(),arrayList);
                                 lis1.setAdapter(adapter);
-                                lis1.deferNotifyDataSetChanged();
+                                adapter.notifyDataSetChanged();
                             }else if (find.isEmpty()){
                                 adapter = new listxoa_Adapter(getApplicationContext(),list2);
                                 lis1.setAdapter(adapter);

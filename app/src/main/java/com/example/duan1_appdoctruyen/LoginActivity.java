@@ -3,6 +3,7 @@ package com.example.duan1_appdoctruyen;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
 
 
+
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,18 +67,17 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                JSONObject userB = new JSONObject();
                 validate();
-                JSONObject userA = new JSONObject();
                 try {
 
-                    userA.put("identifier",edt_username.getText().toString());
-                    userA.put("password",edt_password.getText().toString());
-
+                    userB.put("identifier",edt_username.getText().toString());
+                    userB.put("password",edt_password.getText().toString());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-//                Log.e("onClick: ", ""+userA);
                 String url3 = "https://mysterious-wave-70860.herokuapp.com/api/auth/local";
                 JsonObjectRequest jsonObjectRequest1 = new JsonObjectRequest(Request.Method.POST, url3,
                         null, new Response.Listener<JSONObject>() {
@@ -84,8 +85,14 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         Log.d("Response", response.toString());
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        Animatoo.animateSlideRight(LoginActivity.this);
+                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MY_FILE",MODE_PRIVATE);
+                        SharedPreferences.Editor  editor= sharedPreferences.edit();
+                        editor.putString("email",edt_username.getText().toString());
+                        editor.putString("password",edt_password.getText().toString());
+                        editor.commit();
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        Animatoo.animateZoom(LoginActivity.this);
+                        startActivity(intent);
                     }
 
                 }, new Response.ErrorListener() {
@@ -99,16 +106,15 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public Map<String, String> getHeaders() {
                         Map<String, String> params = new HashMap<String, String>();
-                        //params.put("x-vacationtoken", "secret_token");
+//                        params.put("x-vacationtoken", "secret_token");
                         params.put("content-type", "application/json");
                         return params;
                     }
                     @Override
                     public byte[] getBody() {
-
                         try {
-                            Log.i("json", userA.toString());
-                            return userA.toString().getBytes("UTF-8");
+                            Log.i("json", userB.toString());
+                            return userB.toString().getBytes("UTF-8");
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
@@ -132,11 +138,8 @@ public class LoginActivity extends AppCompatActivity {
         khach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle b = new Bundle();
-                b.putSerializable("thongtin",nguoidung);
 
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                intent.putExtra("nd",b);
                 Animatoo.animateZoom(LoginActivity.this);
                 startActivity(intent);
             }
@@ -159,10 +162,6 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user.isEmpty() || pass.isEmpty()){
             Toast.makeText(getApplicationContext(),"Sai tên đăng nhập hoặc mật khẩu",Toast.LENGTH_SHORT).show();
-            return;
-        }else if (user.equals("admin") && pass.equals("admin") ){
-            startActivity(new Intent(LoginActivity.this,MainActivity.class));
-            Animatoo.animateZoom(LoginActivity.this);
             return;
         }
     }

@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.example.duan1_appdoctruyen.Model.nguoidung;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +32,9 @@ public class Dangky_Activity extends AppCompatActivity {
     TextView dangnhap;
     EditText edt_dk_email,edt_dk_username,edt_dk_password,edt_dk_Repassword;
     Button btn_dk_dangky,btn_dk_cancel;
+
+    nguoidung nguoidung = new nguoidung();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,11 @@ public class Dangky_Activity extends AppCompatActivity {
         btn_dk_dangky = findViewById(R.id.btn_dk_dangky);
         btn_dk_cancel = findViewById(R.id.btn_dk_cancel);
 
+        nguoidung.setUsername(edt_dk_password.getText().toString());
+        nguoidung.setEmail(edt_dk_email.getText().toString());
+        nguoidung.setPassword(edt_dk_password.getText().toString());
+
+
         RequestQueue queue = Volley.newRequestQueue(Dangky_Activity.this);
 
         btn_dk_dangky.setOnClickListener(new View.OnClickListener() {
@@ -53,8 +62,8 @@ public class Dangky_Activity extends AppCompatActivity {
                 //đẩy dữ liệu
                 JSONObject userA = new JSONObject();
                 Validate();
-                try {
 
+                try {
                     userA.put("username",edt_dk_username.getText().toString());
                     userA.put("email",edt_dk_email.getText().toString());
                     userA.put("password",edt_dk_password.getText().toString());
@@ -125,5 +134,8 @@ public class Dangky_Activity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Email không hợp lệ vui lòng nhập lại",Toast.LENGTH_SHORT).show();
             return;
         }
+
+
     }
+
 }

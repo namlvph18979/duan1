@@ -25,7 +25,7 @@
         android:id="@+id/edt_dmk_username"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="Tên Đăng Nhập"
+        android:hint="Email"
         android:layout_margin="10dp"
         android:gravity="center"
         android:textColorHint="#3B96F8"

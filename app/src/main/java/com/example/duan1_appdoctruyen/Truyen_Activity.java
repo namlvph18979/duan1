@@ -46,6 +46,8 @@ public class Truyen_Activity extends AppCompatActivity {
     int dem,demview;
     int dem2 = 0;
 
+    SharedPreferences sharedPreferences;
+
     TruyenTranh truyenTranh = new TruyenTranh();
 
     @Override
@@ -62,6 +64,9 @@ public class Truyen_Activity extends AppCompatActivity {
         img_heart = findViewById(R.id.img_like);
         img_nen = findViewById(R.id.img_anhnen);
         listView = findViewById(R.id.lv_listchaptruyen);
+
+
+        sharedPreferences = getSharedPreferences("TIM",MODE_PRIVATE);
 
         // lay ten truyen
         Bundle b = getIntent().getBundleExtra("data");
@@ -80,6 +85,7 @@ public class Truyen_Activity extends AppCompatActivity {
         dem = Integer.parseInt(truyenTranh.getLuotthich());
 
 
+        img_heart.setImageResource(sharedPreferences.getInt("thich",R.drawable.heartnew2));
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -153,8 +159,10 @@ public class Truyen_Activity extends AppCompatActivity {
 
                     if (dem2%2!=0){
 
+
                         img_heart.setImageResource(R.drawable.heartnew2);
                         tv_like.setText("like: "+ ++dem);
+
                         JSONObject itemA = new JSONObject();
                         try {
                             itemA.put("luot_view", demview);
@@ -174,7 +182,7 @@ public class Truyen_Activity extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
 
-                                Log.d("Response", response.toString());
+                                Toast.makeText(getApplicationContext(),"Da thich truyen",Toast.LENGTH_SHORT).show();
                             }
 
                         }, new Response.ErrorListener() {
@@ -208,9 +216,13 @@ public class Truyen_Activity extends AppCompatActivity {
                         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                         requestQueue.add(jsonObjectRequest1);
                         Toast.makeText(getApplicationContext(),"Đã thích truyện",Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt("thich",R.drawable.heartnew2);
+                        editor.commit();
                         return;
 
                     }else {
+
                         img_heart.setImageResource(R.drawable.heartnew1);
                         tv_like.setText("like: "+ --dem);
                         Toast.makeText(getApplicationContext(),"Đã bỏ thích truyện",Toast.LENGTH_SHORT).show();
