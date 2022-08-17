@@ -50,5 +50,7 @@ dependencies {
     implementation 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation 'com.squareup.picasso:picasso:2.8'
 
+
+    // Sử dụng Thư viện Volley
     implementation 'com.android.volley:volley:1.2.1'
 }

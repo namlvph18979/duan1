@@ -96,7 +96,7 @@
             android:background="@drawable/custom_button"
             android:textColor="@color/white"
             android:layout_margin="20dp"
-            android:id="@+id/btn_dk_cancel"
+            android:id="@+id/btn_dmk_cancel"
             android:layout_weight="1"/>
     </LinearLayout>
 

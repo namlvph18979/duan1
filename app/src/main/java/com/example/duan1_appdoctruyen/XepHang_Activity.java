@@ -49,9 +49,6 @@ public class XepHang_Activity extends AppCompatActivity {
         bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_chart));
         bottomNavigation.add(new MeowBottomNavigation.Model(5,R.drawable.ic_logout));
 
-        Bundle b = getIntent().getBundleExtra("data");
-        truyenTranh = (TruyenTranh) b.getSerializable("truyen");
-
 
         RequestQueue queue = Volley.newRequestQueue(XepHang_Activity.this);
         truyenTranhArrayList = new ArrayList<>();
@@ -73,7 +70,8 @@ public class XepHang_Activity extends AppCompatActivity {
 
 
                             truyenTranhArrayList.add(new TruyenTranh(jsonArray.getString("tieu_de_truyen"),jsonArray.getString("so_chuong")
-                                    ,"tl1",jsonArray.getString("luot_view"),jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id")),truyenTranh.getImg()));
+                                    ,"tl1",jsonArray.getString("luot_view"),jsonArray.getString("luot_thich"),String.valueOf(jsonObject.getInt("id")),String.valueOf(R.drawable.star)));
+
 
 
                     }

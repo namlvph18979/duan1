@@ -59,7 +59,7 @@ public class Dangky_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                //đẩy dữ liệu
+                //kiểu dữ liệu
                 JSONObject userA = new JSONObject();
                 Validate();
 

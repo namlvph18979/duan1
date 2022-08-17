@@ -62,6 +62,7 @@
         android:background="@drawable/custom_editext2"
         android:layout_height="45dp"
         android:hint="link ảnh"
+        android:enabled="false"
         android:paddingLeft="10dp"
         android:textColor="@color/black"
         android:layout_marginTop="30dp"/>

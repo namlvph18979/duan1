@@ -46,7 +46,6 @@ public class Truyen_Activity extends AppCompatActivity {
     int dem,demview;
     int dem2 = 0;
 
-    SharedPreferences sharedPreferences;
 
     TruyenTranh truyenTranh = new TruyenTranh();
 
@@ -66,7 +65,6 @@ public class Truyen_Activity extends AppCompatActivity {
         listView = findViewById(R.id.lv_listchaptruyen);
 
 
-        sharedPreferences = getSharedPreferences("TIM",MODE_PRIVATE);
 
         // lay ten truyen
         Bundle b = getIntent().getBundleExtra("data");
@@ -75,6 +73,8 @@ public class Truyen_Activity extends AppCompatActivity {
         tvname.setText(truyenTranh.getTenTruyen());
         tvtheloai.setText(truyenTranh.getTheloai());
 
+
+        //chuyển link ảnh thành ảnh
         Picasso.get().load(truyenTranh.getImg()).into(img_nen);
 
         tv_view.setText("View: "+truyenTranh.getLuotview());
@@ -85,7 +85,6 @@ public class Truyen_Activity extends AppCompatActivity {
         dem = Integer.parseInt(truyenTranh.getLuotthich());
 
 
-        img_heart.setImageResource(sharedPreferences.getInt("thich",R.drawable.heartnew2));
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -93,11 +92,14 @@ public class Truyen_Activity extends AppCompatActivity {
         // link api
         final String url = "https://mysterious-wave-70860.herokuapp.com/api/chap-truyens?populate=*";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+
+        // hàm gọi đến strapi
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url,
+                null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    //nhan json array "data" tra ve
+                    //trỏ đến mảng có tên data.
                     JSONArray responseJSONArray = response.getJSONArray("data");
                     //vong lap cho tung array o trong du lieu tra lai
 
@@ -216,9 +218,7 @@ public class Truyen_Activity extends AppCompatActivity {
                         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
                         requestQueue.add(jsonObjectRequest1);
                         Toast.makeText(getApplicationContext(),"Đã thích truyện",Toast.LENGTH_SHORT).show();
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt("thich",R.drawable.heartnew2);
-                        editor.commit();
+
                         return;
 
                     }else {
@@ -234,17 +234,5 @@ public class Truyen_Activity extends AppCompatActivity {
         });
 
     }
-    public void remember(int so){
-        SharedPreferences sharedPreferences = getSharedPreferences("IMG.txt",MODE_PRIVATE);
-        SharedPreferences.Editor editor= sharedPreferences.edit();
-        if (so%2!=0){
-            editor.putInt("img",R.drawable.heartnew2);
-        }else {
-            editor.clear();
-        }
-        editor.commit();
-
-    }
-
 
 }

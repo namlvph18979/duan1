@@ -48,7 +48,8 @@ public class XepHang_Adapter extends ArrayAdapter<TruyenTranh> {
         ten.setText("Ten: "+truyenTranh.getTenTruyen());
         Chap.setText("Chap "+truyenTranh.getTenChap());
         view.setText("View: "+truyenTranh.getLuotview());
-        Picasso.get().load(truyenTranh.getImg()).into(anh);
+       anh.setImageResource(R.drawable.star);
+
 
         return convertView;
     }

@@ -33,6 +33,8 @@ public class Them_Activity extends AppCompatActivity {
     ImageView back;
 
     TruyenTranh truyenTranh = new TruyenTranh();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +54,11 @@ public class Them_Activity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(this);
 
 
+
         btn_them.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url2 = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens";
+                String url2 = "https://mysterious-wave-70860.herokuapp.com/api/ten-truyens?populate=*";
 
                 JSONObject itemA = new JSONObject();
                 Validate();
@@ -65,6 +68,8 @@ public class Them_Activity extends AppCompatActivity {
                     itemA.put("ten_the_loai",theloai.getText());
                     itemA.put("luot_view","0");
                     itemA.put("luot_thich","0");
+                    itemA.put("trang_thai","Đang ra");
+                    itemA.put("url",linkanh1(String.valueOf(linkanh.getText())));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -113,8 +118,9 @@ public class Them_Activity extends AppCompatActivity {
                     }
                 };
 
-                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                requestQueue.add(jsonObjectRequest1);
+                queue.add(jsonObjectRequest1);
+
+
 
 
             }
@@ -140,8 +146,70 @@ public class Them_Activity extends AppCompatActivity {
 
     public void Validate(){
         if (tentruyen.getText().toString().isEmpty() || chaptruyen.getText().toString().isEmpty()
-                || linkanh.getText().toString().isEmpty() || theloai.getText().toString().isEmpty()){
+                || linkanh.getText().toString().isEmpty()
+                || theloai.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext(),"Vui long nhap du thong tin",Toast.LENGTH_SHORT).show();
         }
+        return;
     }
+
+    public String linkanh1(String link){
+
+        String url2 = "https://mysterious-wave-70860.herokuapp.com/api/upload/";
+
+        JSONObject itemB = new JSONObject();
+        Validate();
+        try {
+            itemB.put("url",link);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("img_truyen", itemB);
+
+
+        } catch (JSONException e) {
+            // handle exception
+        }
+        JsonObjectRequest jsonObjectRequest2 = new JsonObjectRequest(Request.Method.POST, url2, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                Log.d("Response", response.toString());
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+            }
+
+
+        }){    //this is the part, that adds the header to the request
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("x-vacationtoken", "secret_token");
+                params.put("content-type", "application/json");
+                return params;
+            }
+            @Override
+            public byte[] getBody() {
+
+                try {
+                    Log.i("json", jsonObject.toString());
+                    return jsonObject.toString().getBytes("UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest2);
+
+        return "";
+    }
+
 }
